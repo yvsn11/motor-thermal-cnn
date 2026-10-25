@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "motor-thermal-cnn"
+version = "0.1.0"
+description = "Thermal prediction of a permanent magnet synchronous motor with a causal 1D CNN, benchmarked on RMSE and maximum error."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "scikit-learn>=1.4",
+  "torch>=2.2",
+  "onnx>=1.16",
+  "onnxruntime>=1.18",
+  "matplotlib>=3.8",
+  "kagglehub>=0.3",
+]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.35"]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

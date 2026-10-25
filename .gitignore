@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.env
+.env.*
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Raw data is never redistributed (see data/README.md)
+data/*
+!data/README.md
+*.npz
+*.csv
+!results/**/*.csv
+!tests/**/*.csv
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml
+
+# local run logs (contain machine-specific paths)
+results/logs/

@@ -1,0 +1,93 @@
+{
+  "cnn": {
+    "n_params": 38052,
+    "receptive_field_samples": 4096,
+    "receptive_field_seconds": 2048.0,
+    "onnx_bytes": 192259,
+    "pt_bytes": 166931,
+    "onnx_vs_torch_max_abs_diff_scaled": 5.960464477539062e-07,
+    "onnx_vs_torch_diffs_by_shape": {
+      "(1, 1024, 8)": 5.960464477539062e-07,
+      "(2, 300, 8)": 4.76837158203125e-07,
+      "(1, 5000, 8)": 4.76837158203125e-07,
+      "(1, 1, 8)": 1.1920928955078125e-07
+    },
+    "latency": {
+      "streaming_step_window_rf": {
+        "p50_ms": 8.59763300013583,
+        "p95_ms": 13.060716599829902,
+        "n_runs": 300,
+        "shape": [
+          1,
+          4096,
+          8
+        ]
+      },
+      "sequence_1024": {
+        "p50_ms": 2.1322205002434202,
+        "p95_ms": 3.168717349717553,
+        "n_runs": 150,
+        "shape": [
+          1,
+          1024,
+          8
+        ]
+      },
+      "single_sample_no_context": {
+        "p50_ms": 0.11095150011897204,
+        "p95_ms": 0.18424854984004915,
+        "n_runs": 500,
+        "shape": [
+          1,
+          1,
+          8
+        ]
+      }
+    }
+  },
+  "ort_intra_op_threads": 1,
+  "ort_version": "1.31.0",
+  "torch_version": "2.14.1+cu130",
+  "latency_notes": "streaming_step_window_rf: the ONNX model is stateless, so one new sample is answered by feeding the last receptive-field window (1023 samples) and reading the last output; sequence_1024: 1024 outputs in one call; single_sample_no_context: a (1,1,8) call, valid only as a lower bound on call overhead (no history, so not a usable prediction). CPU, onnxruntime, single intra-op thread by default.",
+  "others": {
+    "gru": {
+      "n_params": 30916,
+      "onnx_bytes": 125452,
+      "onnx_vs_torch_max_abs_diff_scaled": 5.364418029785156e-07,
+      "latency": {
+        "sequence_1024": {
+          "p50_ms": 3.7618764999933774,
+          "p95_ms": 4.877814599694841,
+          "n_runs": 20,
+          "shape": [
+            1,
+            1024,
+            8
+          ]
+        },
+        "streaming_step_stateless_window_rf": {
+          "p50_ms": 15.2020310001717,
+          "p95_ms": 15.822252499901879,
+          "n_runs": 20,
+          "shape": [
+            1,
+            4096,
+            8
+          ]
+        }
+      }
+    },
+    "ridge": {
+      "n_params": 244,
+      "onnx_bytes": null,
+      "latency": {
+        "sequence_1024": {
+          "p50_ms": 1.038786000208347,
+          "p95_ms": 1.1705663001521316,
+          "n_runs": 50,
+          "note": "numpy/scikit-learn, 1 call"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "cnn": {
+    "budget": {
+      "max_epochs": 25,
+      "iters_per_epoch": 40
+    },
+    "trials": [
+      {
+        "override": {
+          "model.channels": 32,
+          "lr": 0.003
+        },
+        "val_rmse_mean_K": 4.915782197911044,
+        "n_params": 37860,
+        "train_time_s": 92.77960443496704,
+        "best_epoch": 8
+      },
+      {
+        "override": {
+          "model.channels": 48,
+          "lr": 0.003
+        },
+        "val_rmse_mean_K": 4.978380934535238,
+        "n_params": 84436,
+        "train_time_s": 160.8894066810608,
+        "best_epoch": 13
+      },
+      {
+        "override": {
+          "model.channels": 32,
+          "lr": 0.01
+        },
+        "val_rmse_mean_K": 5.2813658684127835,
+        "n_params": 37860,
+        "train_time_s": 78.39593458175659,
+        "best_epoch": 8
+      },
+      {
+        "override": {
+          "model.channels": 48,
+          "lr": 0.003,
+          "chunk": 2048,
+          "warmup": 512,
+          "batch": 8
+        },
+        "val_rmse_mean_K": 4.866900239694098,
+        "n_params": 84436,
+        "train_time_s": 121.07529664039612,
+        "best_epoch": 7
+      }
+    ]
+  },
+  "gru": {
+    "budget": {
+      "max_epochs": 12,
+      "iters_per_epoch": 30
+    },
+    "trials": [
+      {
+        "override": {
+          "model.hidden": 64,
+          "lr": 0.003
+        },
+        "val_rmse_mean_K": 8.474023483298495,
+        "n_params": 39428,
+        "train_time_s": 215.1462526321411,
+        "best_epoch": 3
+      },
+      {
+        "override": {
+          "model.hidden": 64,
+          "lr": 0.01
+        },
+        "val_rmse_mean_K": 9.280304599447646,
+        "n_params": 39428,
+        "train_time_s": 159.97081637382507,
+        "best_epoch": 1
+      }
+    ]
+  },
+  "cnn_stage2": {
+    "budget": {
+      "max_epochs": 25,
+      "iters_per_epoch": 40
+    },
+    "trials": [
+      {
+        "override": {
+          "model.channels": 32,
+          "model.kernel": 2,
+          "model.n_blocks": 12,
+          "lr": 0.003,
+          "chunk": 6144,
+          "warmup": 2048,
+          "batch": 5
+        },
+        "val_rmse_mean_K": 2.2930352148759496,
+        "n_params": 38052,
+        "train_time_s": 242.5245418548584,
+        "best_epoch": 14
+      },
+      {
+        "override": {
+          "model.channels": 32,
+          "model.kernel": 2,
+          "model.n_blocks": 12,
+          "model.dropout": 0.1,
+          "lr": 0.003,
+          "chunk": 6144,
+          "warmup": 2048,
+          "batch": 5
+        },
+        "val_rmse_mean_K": 2.2335484246378456,
+        "n_params": 38052,
+        "train_time_s": 388.39068508148193,
+        "best_epoch": 14
+      }
+    ]
+  }
+}
